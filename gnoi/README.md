@@ -2,6 +2,63 @@
 
 In this section, we will explore gNOI services.
 
+## gNOI System Time
+
+The System Time RPC can be used to get the current timestamp on the router.
+
+This is often used to check connectivity between the client and the router and also to verify whether gNOI is operational on the router (similar to gNMI Capabilities).
+
+```bash
+gnoic -a leaf1:57401 -u gnoic1 -p gnoic1 --insecure system time
+```
+
+Expected output:
+
+```bash
++-------------+-----------------------------------------+---------------------+
+| Target Name |                  Time                   |      Timestamp      |
++-------------+-----------------------------------------+---------------------+
+| leaf1:57401 | 2025-05-19 13:09:12.601609856 -0400 EDT | 1747674552601609856 |
++-------------+-----------------------------------------+---------------------+
+```
+
+## gNOI System Ping
+
+The System Ping RPC can be used to initiate a ping on the router from a client.
+
+For our test, let's ping the system loopback of `leaf2` from `leaf1`.
+
+```bash
+gnoic -a leaf1:57401 -u gnoic1 -p gnoic1 --insecure system ping --destination 2.2.2.2 --ns default --count 1 --wait 1s
+```
+
+Expected output:
+
+```bash
+56 bytes from 2.2.2.2: icmp_seq=1 ttl=63 time=56.420533ms
+--- 2.2.2.2 ping statistics ---
+1 packets sent, 1 packets received, 0.00% packet loss
+round-trip min/avg/max/stddev = 56.421/56.421/56.421/0.000 ms
+```
+
+## gNOI System Traceroute
+
+Traceroute RPC can be used to trace the path to the destination using ICMP messages similar to a standard traceroute but executed remotely from a gNOI client.
+
+Let us trace the path for `leaf2` loopback IP.
+
+```bash
+gnoic -a leaf1:57401 -u gnoic1 -p gnoic1 --insecure system traceroute --destination 2.2.2.2 --ns default --wait 1s
+```
+
+Expected output:
+
+```bash
+traceroute to 2.2.2.2 (2.2.2.2), 30 max hops, 56 byte packets
+1 192.168.10.3 (192.168.10.3) 118.791864ms
+2 2.2.2.2 (2.2.2.2) 127.56325ms
+```
+
 ## gNOI File Get
 
 gNOI File service provides RPCs that are used to transfer files between the client and the router.
