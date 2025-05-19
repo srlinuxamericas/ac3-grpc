@@ -1,6 +1,15 @@
 # gNOI Use Cases
 
-In this section, we will explore gNOI service.
+In this section, we will explore gNOI services.
+
+## gNOI System Time
+
+The System Time RPC can be used to get the current timestamp on the router.
+
+This is often used to check connectivity between the client and the router and also to verify whether gNOI is operational on the router (similar to gNMI Capabilities).
+
+```bash
+
 
 ## gNOI File Get
 
@@ -90,3 +99,25 @@ Expected output:
 ```
 
 Now that the config backup is transferred, regular CLI process can be followed to restore this config. This is outside the scope of this activity.
+
+## gNOI Healthz
+
+The Healthz RPC can be used to verify the health of the router components like line cards, fan tray etc.
+
+Along with checking the health of the components, the RPC also generates a tech support file that can be used to troubleshoot in case the part is not healthy.
+
+```bash
+gnoic -a leaf1:57401 -u admin -p admin --insecure healthz check --path /platform/fan-tray[id=1]
+```
+
+Expected output:
+
+```bash
++-------------+---------------------+-------------------------+--------------------+-----------------------------------------+---------------------+---------------+
+| Target Name |         ID          |          Path           |       Status       |               Created At                |     Artifact ID     | Artifact Type |
++-------------+---------------------+-------------------------+--------------------+-----------------------------------------+---------------------+---------------+
+| leaf1:57401 | 1749085078899992055 | platform/fan-tray[id=1] | STATUS_UNSPECIFIED | 2025-05-19 07:41:45.816390245 +0000 UTC | 1749085078894083190 | file          |
++-------------+---------------------+-------------------------+--------------------+-----------------------------------------+---------------------+---------------+
+```
+
+As this is a containerlab node, the health status is Unspecified.
