@@ -249,5 +249,110 @@ gnmic -a leaf1:57401 -u admin -p admin --insecure get --path openconfig:/network
 Complete configuration on leaf2 and spine.
 
 ```bash
+gnmic -a leaf2:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file oc/leaf2-oc.cfg --update-path srl_nokia:/ --update-file srl/leaf2-srl.cfg --encoding=json_ietf
 
+gnmic -a spine:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file oc/spine-oc.cfg --update-path srl_nokia:/ --update-file srl/spine-srl.cfg --encoding=json_ietf
 ```
+
+With the configuration that we pushed, the BGP neighbor sessions should come UP and start advertising the routes.
+
+Let's verify this using gNMI Get.
+
+As an example, let's verify the status of BGP neighbor `2.2.2.2` on leaf1 using SR Linux model.
+
+To reduce the output, we will use the `depth` option supported in gnmic.
+
+```bash
+gnmic -a leaf1:57401 -u admin -p admin --insecure get --path /network-instance[name=default]/protocols/bgp/neighbor[peer-address=2.2.2.2] --encoding json_ietf --depth 1
+```
+
+Expected output:
+
+```bash
+[
+  {
+    "source": "leaf1:57401",
+    "timestamp": 1747629677667519827,
+    "time": "2025-05-19T00:41:17.667519827-04:00",
+    "updates": [
+      {
+        "Path": "srl_nokia-network-instance:network-instance[name=default]/protocols/srl_nokia-bgp:bgp/neighbor[peer-address=2.2.2.2]",
+        "values": {
+          "srl_nokia-network-instance:network-instance/protocols/srl_nokia-bgp:bgp/neighbor": {
+            "admin-state": "enable",
+            "advertised-capabilities": [
+              "ROUTE_REFRESH",
+              "4-OCTET_ASN",
+              "MP_BGP",
+              "GRACEFUL_RESTART"
+            ],
+            "established-transitions": "1",
+            "last-established": "2025-05-19T04:28:59.500Z",
+            "last-event": "recvOpen",
+            "last-state": "active",
+            "local-preference": 100,
+            "maintenance-group": "",
+            "next-hop-self": false,
+            "peer-as": 65500,
+            "peer-group": "evpn",
+            "peer-router-id": "2.2.2.2",
+            "peer-type": "ibgp",
+            "received-afi-safi": [
+              "srl_nokia-common:evpn"
+            ],
+            "received-capabilities": [
+              "ROUTE_REFRESH",
+              "4-OCTET_ASN",
+              "MP_BGP",
+              "GRACEFUL_RESTART"
+            ],
+            "received-end-of-rib": [
+              "srl_nokia-common:evpn"
+            ],
+            "route-flap-damping": false,
+            "sent-end-of-rib": [
+              "srl_nokia-common:evpn"
+            ],
+            "session-state": "established",
+            "under-maintenance": false
+          }
+        }
+      }
+    ]
+  }
+]
+```
+
+The Layer 2 EVPN should be UP and we should be able to ping from Client 1 to Client 3.
+
+Login to Client 1:
+
+```bash
+docker exec -it client1 bash
+```
+
+and run a ping to Client 3
+
+```bash
+ping -c 3 172.16.10.60
+```
+
+### gNMI Subscribe with Openconfig
+
+gNMI Subscribe for Openconfig Streaming Telemetry works in the same manner as the SR Linux models.
+
+We will try the ON-CHANGE option in this section with Openconfig models.
+
+Let us stream the out packets counter on `leaf1` using on-change option.
+
+```bash
+gnmic -a leaf1:57401 -u admin -p admin --insecure sub --path openconfig:/interfaces/interface[name=ethernet-1/1]/state/counters/out-pkts --mode stream --stream-mode on-change
+```
+
+Because we are using the on-change option, we will only see an output when the counter value changes.
+
+On another window, run the ping from Client 1 to Client 3 as shown in previous section.
+
+Verify that the streaming session is now showing outputs for each counter increment.
+
+Stop the ping and the streaming session using `CTRL+c`.
