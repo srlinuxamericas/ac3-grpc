@@ -1,4 +1,4 @@
-# gNSI Use Case
+# gNSI Use Cases
 
 We will be using gNSI to configure an authorization policy on leaf1 that will prevent the user called `client1` (used for config file backup) from writing files on the switch.
 
