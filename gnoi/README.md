@@ -2,15 +2,6 @@
 
 In this section, we will explore gNOI services.
 
-## gNOI System Time
-
-The System Time RPC can be used to get the current timestamp on the router.
-
-This is often used to check connectivity between the client and the router and also to verify whether gNOI is operational on the router (similar to gNMI Capabilities).
-
-```bash
-```
-
 ## gNOI File Get
 
 gNOI File service provides RPCs that are used to transfer files between the client and the router.
