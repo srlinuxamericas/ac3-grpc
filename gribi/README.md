@@ -1,3 +1,5 @@
+# gRIBI Use Case
+
 The lab is deployed with the full configuration along with a loopback interface on leaf2 and spine. A static route is added on leaf2 to reach the loopback on spine.
 
 We will use gRIBIc to install a route on spine to reach the loopback on leaf2.
