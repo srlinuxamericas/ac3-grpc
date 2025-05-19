@@ -48,7 +48,9 @@ ls -lrt etc/opt/srlinux/config.json
 
 This action can be put inside a cron job and scheduled for daily backups.
 
-## Config Restore
+## gNOI File Put
+
+gNOI File Put RPC can be used to transfer files to the router.
 
 A configuration backup on a remote server can be transferred to SR Linux device using gNOI File Put RPC.
 
