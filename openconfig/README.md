@@ -201,7 +201,7 @@ Not all objects for these configurations are supported in Openconfig. So we will
 
 We will use the gNMI Get RPC with the `--update-path` and `--update-file` options.
 
-Openconfig configuration file for all 3 devices are inside [oc](oc/).
+Openconfig configuration file for all 3 devices are inside [oc](../configs/oc/).
 
 SR Linux configuration files are inside [srl](srl/).
 
@@ -217,7 +217,7 @@ gnmic -a leaf1:57401 -u admin -p admin --insecure get --path openconfig:/network
 Now, we are ready to push the configuration using a mix of Openconfig and SR Linux models.
 
 ```bash
-gnmic -a leaf1:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file oc/leaf1-oc.cfg --update-path srl_nokia:/ --update-file srl/leaf1-srl.cfg --encoding=json_ietf
+gnmic -a leaf1:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file configs/oc/leaf1-oc.cfg --update-path srl_nokia:/ --update-file srl/leaf1-srl.cfg --encoding=json_ietf
 ```
 
 Expected output:
@@ -249,9 +249,9 @@ gnmic -a leaf1:57401 -u admin -p admin --insecure get --path openconfig:/network
 Complete configuration on leaf2 and spine.
 
 ```bash
-gnmic -a leaf2:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file oc/leaf2-oc.cfg --update-path srl_nokia:/ --update-file srl/leaf2-srl.cfg --encoding=json_ietf
+gnmic -a leaf2:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file configs/oc/leaf2-oc.cfg --update-path srl_nokia:/ --update-file srl/leaf2-srl.cfg --encoding=json_ietf
 
-gnmic -a spine:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file oc/spine-oc.cfg --update-path srl_nokia:/ --update-file srl/spine-srl.cfg --encoding=json_ietf
+gnmic -a spine:57401 -u admin -p admin --insecure set --update-path openconfig:/ --update-file configs/oc/spine-oc.cfg --update-path srl_nokia:/ --update-file srl/spine-srl.cfg --encoding=json_ietf
 ```
 
 With the configuration that we pushed, the BGP neighbor sessions should come UP and start advertising the routes.
