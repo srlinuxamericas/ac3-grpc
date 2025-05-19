@@ -195,7 +195,6 @@ When multiple config objects are required to be updated, the configuration can b
 
 We will configure the `system0` loopback interface on all 3 devices using this method.
 
-|--|--|
 |Device|System IP|
 |--|--|
 |leaf1|1.1.1.1/32|
