@@ -25,7 +25,7 @@ sudo clab dep -c
 
 The new lab that will be deployed is similar to the previous lab but without any clients and an additional link between the 2 leafs.
 
-![image](images/gribi-topo.jpg)
+![image](../images/gribi-topo.jpg)
 
 Lab is deployed with all required configuration.
 
