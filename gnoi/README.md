@@ -169,3 +169,63 @@ Expected output:
 ```
 
 As this is a containerlab node, the health status is Unspecified.
+
+## Software Upgrade using gNOI
+
+This section is theory only as these RPCs cannot be implemented on a node in Containerlab.
+
+The following commands can be used to automate software upgrade using gNOI RPCs.
+
+To verify the current software verion on the device:
+
+```bash
+gnoic -a leaf1:57401 -u admin -p admin --insecure os verify
+```
+
+Expected output:
+
+```bash
++-----------------------+-----------+---------------------+
+|      Target Name      |  Version  | Activation Fail Msg |
++-----------------------+-----------+---------------------+
+| leaf1:57401 | 23.7.2-84 |                     |
++-----------------------+-----------+---------------------+
+```
+
+To transfer a software image file to the device:
+
+```bash
+gnoic -a leaf1:57401 -u admin -p admin --insecure os install --version srlinux_23.10.1-218 --pkg ../23.10/srlinux-23.10.1-218.bin
+```
+
+In this commands, `version` refers to the software version of the image being transferred and `pkg` refers to the location of the image file on the host VM.
+
+Expected output:
+
+```bash
+INFO[0000] target "leaf1:57401": starting Install stream 
+INFO[0000] target "leaf1:57401": TransferProgress bytes_received:5242880 
+INFO[0000] target "leaf1:57401": TransferProgress bytes_received:10485760 
+INFO[0000] target "leaf1:57401": TransferProgress bytes_received:15728640 
+...
+INFO[0029] target "leaf1:57401": TransferProgress bytes_received:1179648000 
+INFO[0029] target "leaf1:57401": TransferProgress bytes_received:1184890880 
+INFO[0029] target "leaf1:57401": TransferProgress bytes_received:1190133760 
+INFO[0030] target "leaf1:57401": sending TransferEnd 
+INFO[0030] target "leaf1:57401": TransferProgress bytes_received:1195376640 
+INFO[0030] target "leaf1:57401": TransferContent done... 
+```
+
+To activate a software image on the device:
+
+```bash
+gnoic -a leaf1:57401 -u admin -p admin --insecure os activate --version 23.10.1-218
+```
+
+Expected output:
+
+```bash
+INFO[0005] target "leaf1:57401" activate response "activate_ok:{}" 
+```
+
+Then verify the current software version using the `os verify` RPC used above.
