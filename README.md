@@ -219,3 +219,16 @@ set / system grpc-server insecure-mgmt unix-socket admin-state enable
 We can see that all 4 gRPC services for this workshop are enabled on both gRPC servers.
 
 Secure gRPC server is listening on the default gRPC port (57400) while the insecure gRPC server is listening on port 57401.
+
+## Useful links
+
+* [containerlab](https://containerlab.dev/)
+* [gNMIc](https://gnmic.openconfig.net/)
+* [gNOIc](https://gnoic.kmrd.dev/)
+* [gRIBIc](https://gribic.kmrd.dev//)
+
+### SR Linux
+* [SR Linux documentation](https://documentation.nokia.com/srlinux/)
+* [Learn SR Linux](https://learn.srlinux.dev/)
+* [YANG Browser](https://yang.srlinux.dev/)
+* [gNxI Browser](https://gnxi.srlinux.dev/)
