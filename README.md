@@ -135,7 +135,7 @@ sudo docker exec –it client3 sh
 
 ### IPv6 Link Addressing
 
-![image](images/lab-ipv4.jpg)
+![image](images/lab-ipv6.jpg)
 
 ### Verify reachability between devices
 
@@ -177,7 +177,7 @@ If for any reason, one of the above clients needs to be re-installed or updated,
 
 All gnmic, gnoic, gnsic and gribic commands will be executed from the VM.
 
-![image](lab-setup.jpg)
+![image](images/lab-setup.jpg)
 
 ## Enabling gRPC services
 
