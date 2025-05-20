@@ -115,8 +115,6 @@ gnmic -a leaf1:57401 -u admin -p admin --insecure get --path "/network-instance[
 
 If you would like to see the full output, try running the above command without the grep.
 
-We are using a new user `gribic1` for the gRIBI operation. This user is created as part of the lab deployment.
-
 Before we push the route, let's get the current installed gRIBI routes.
 
 ```
