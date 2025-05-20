@@ -1,0 +1,57 @@
+name: ac3-gribi
+
+mgmt:
+  network: ac3-grpc-lab-mgmt
+  ipv4-subnet: 172.50.20.0/24
+  ipv6-subnet: 2001:172:50:20::/64
+
+prefix: ""
+topology:
+  defaults:
+    kind: nokia_srlinux
+  kinds:
+    nokia_srlinux:
+      type: ixrd2l
+      image: ghcr.io/nokia/srlinux:24.10.1
+    linux:
+      image: ghcr.io/srl-labs/network-multitool
+  nodes:
+    leaf1:
+      startup-config: configs/leaf1-startup.cfg
+      mgmt-ipv4: 172.50.20.2
+      mgmt-ipv6: 2001:172:50:20::2
+      type: ixrx3b
+      license: /home/nokiauser/images/srlinux-24.lic
+    leaf2:
+      startup-config: configs/leaf2-startup.cfg
+      mgmt-ipv4: 172.50.20.4
+      mgmt-ipv6: 2001:172:50:20::4
+    spine:
+      startup-config: configs/spine-startup.cfg
+      mgmt-ipv4: 172.50.20.3
+      mgmt-ipv6: 2001:172:50:20::3
+    client1:
+      kind: linux
+      mgmt-ipv4: 172.50.20.10
+      mgmt-ipv6: 2001:172:50:20::10
+      exec:
+        - ip address add 172.16.10.50/24 dev eth1
+        - ip -6 address add 172:16:10::50/64 dev eth1
+    client3:
+      kind: linux
+      mgmt-ipv4: 172.50.20.12
+      mgmt-ipv6: 2001:172:50:20::12
+      exec:
+        - ip address add 172.16.10.60/24 dev eth1
+        - ip -6 address add 172:16:10::60/64 dev eth1
+  links:
+      # spine-leaf links
+    - endpoints: ["leaf1:e1-1", "spine:e1-1"]
+    - endpoints: ["leaf2:e1-2", "spine:e1-2"]
+    
+      # leaf-leaf links
+    - endpoints: ["leaf1:e1-5", "leaf2:e1-5"]
+    
+      # leaf-client links
+    - endpoints: ["client1:eth1","leaf1:e1-10"]
+    - endpoints: ["client3:eth1","leaf2:e1-10"]
