@@ -10,7 +10,7 @@ operations:
     election-id: 1:0
     nh:
       index: 1
-      ip-address: 172.160.10.1
+      ip-address: 172.16.10.1
 
   - op: add
     election-id: 1:0
