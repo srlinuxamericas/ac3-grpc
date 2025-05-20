@@ -17,17 +17,17 @@ topology:
       image: ghcr.io/srl-labs/network-multitool
   nodes:
     leaf1:
-      startup-config: configs/leaf1-startup.cfg
+      startup-config: configs/leaf1-gribi-startup.cfg
       mgmt-ipv4: 172.50.20.2
       mgmt-ipv6: 2001:172:50:20::2
       type: ixrx3b
       license: /home/nokiauser/images/srlinux-24.lic
     leaf2:
-      startup-config: configs/leaf2-startup.cfg
+      startup-config: configs/leaf2-gribi-startup.cfg
       mgmt-ipv4: 172.50.20.4
       mgmt-ipv6: 2001:172:50:20::4
     spine:
-      startup-config: configs/spine-startup.cfg
+      startup-config: configs/spine-gribi-startup.cfg
       mgmt-ipv4: 172.50.20.3
       mgmt-ipv6: 2001:172:50:20::3
     client1:
