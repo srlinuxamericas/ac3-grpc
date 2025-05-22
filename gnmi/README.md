@@ -7,7 +7,7 @@ We will start by verifying gNMI capabilities on the SR Linux device using the gN
 This is also a test to confirm whether gNMI is enabled on the device.
 
 ```bash
-gnmic -a leaf1:57401 -u gnmic1 -p gnmic1 --insecure cap
+gnmic -a leaf1:57401 -u admin -p admin --insecure cap
 ```
 
 Expected output:
