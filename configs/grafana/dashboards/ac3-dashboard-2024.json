@@ -294,13 +294,13 @@
                 "color": "#73BF69",
                 "comparator": "ge",
                 "level": 0,
-                "value": 5
+                "value": 5000
               },
               {
                 "color": "#FF780A",
                 "comparator": "ge",
                 "level": 0,
-                "value": 2000000
+                "value": 500000
               },
               {
                 "color": "#E02F44",
@@ -404,7 +404,7 @@
                     "colorOn": "a",
                     "hidden": false,
                     "pattern": "bK1g2G2s_sZXscMve1vz-35",
-                    "style": "fillColor"
+                    "style": "strokeColor"
                   }
                 ],
                 "options": {
@@ -544,7 +544,7 @@
                     "colorOn": "a",
                     "hidden": false,
                     "pattern": "bK1g2G2s_sZXscMve1vz-53",
-                    "style": "fillColor"
+                    "style": "strokeColor"
                   }
                 ],
                 "options": {
@@ -824,7 +824,7 @@
                     "colorOn": "a",
                     "hidden": false,
                     "pattern": "bK1g2G2s_sZXscMve1vz-31",
-                    "style": "fillColor"
+                    "style": "strokeColor"
                   }
                 ],
                 "options": {
@@ -964,7 +964,7 @@
                     "colorOn": "a",
                     "hidden": false,
                     "pattern": "bK1g2G2s_sZXscMve1vz-20",
-                    "style": "fillColor"
+                    "style": "strokeColor"
                   }
                 ],
                 "options": {
@@ -1104,7 +1104,7 @@
                     "colorOn": "a",
                     "hidden": false,
                     "pattern": "bK1g2G2s_sZXscMve1vz-29",
-                    "style": "fillColor"
+                    "style": "strokeColor"
                   }
                 ],
                 "options": {
@@ -1244,7 +1244,7 @@
                     "colorOn": "a",
                     "hidden": false,
                     "pattern": "bK1g2G2s_sZXscMve1vz-21",
-                    "style": "fillColor"
+                    "style": "strokeColor"
                   }
                 ],
                 "options": {
@@ -1678,8 +1678,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1745,8 +1744,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1809,7 +1807,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "spine",
           "value": "spine"
         },
@@ -1836,7 +1834,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "e1-1",
           "value": "e1-1"
         },
@@ -1871,6 +1869,6 @@
   "timezone": "",
   "title": "Internet-2 Tech-24 Draft222222",
   "uid": "e0776c4f-5a0b-4b23-baea-14975729df2d222",
-  "version": 6,
+  "version": 3,
   "weekStart": ""
 }
