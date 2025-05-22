@@ -63,7 +63,7 @@ enter oc
 Then run the below command to see interface ethernet-1/1 configuration in Openconfig format.
 
 ```bash
-info flat interfaces interface ethernet-1/1
+info flat interfaces ethernet-1/1
 ```
 
 Expected output:
