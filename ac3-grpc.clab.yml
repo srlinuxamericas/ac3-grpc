@@ -53,7 +53,7 @@ topology:
       binds:
         - configs/gnmic-config.yml:/gnmic-config.yml:ro
       cmd: --config /gnmic-config.yml --log subscribe
-   prometheus:
+    prometheus:
       kind: linux
       image: prom/prometheus:v2.37.8
       binds:
