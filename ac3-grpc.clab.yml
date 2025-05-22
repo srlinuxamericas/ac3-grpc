@@ -35,13 +35,45 @@ topology:
       exec:
         - ip address add 172.16.10.50/24 dev eth1
         - ip -6 address add 172:16:10::50/64 dev eth1
+        - iperf3 -s -p 5201 -D > iperf2_1.log
+      group: server
     client3:
       kind: linux
       mgmt-ipv4: 172.20.20.12
       mgmt-ipv6: 2001:172:20:20::12
+      binds:
+        - configs/client3:/config
       exec:
         - ip address add 172.16.10.60/24 dev eth1
-        - ip -6 address add 172:16:10::60/64 dev eth1
+        - ip -6 address add 172:16:10::60/64 dev eth1      
+  ### TELEMETRY STACK ###
+    gnmic:
+      kind: linux
+      image: ghcr.io/openconfig/gnmic:0.30.0
+      binds:
+        - configs/gnmic-config.yml:/gnmic-config.yml:ro
+      cmd: --config /gnmic-config.yml --log subscribe
+
+   prometheus:
+      kind: linux
+      image: prom/prometheus:v2.37.8
+      binds:
+        - configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      cmd: --config.file=/etc/prometheus/prometheus.yml
+      ports:
+        - 9090:9090
+
+    grafana:
+      kind: linux
+      image: grafana/grafana:9.5.2
+      binds:
+        - configs/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+        - configs/grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+        - configs/grafana/dashboards:/var/lib/grafana/dashboards
+      ports:
+        - 3000:3000
+      env:
+        GF_INSTALL_PLUGINS: https://algenty.github.io/flowcharting-repository/archives/agenty-flowcharting-panel-1.0.0d.220606199-SNAPSHOT.zip;agenty-flowcharting-panel        
   links:
       # spine-leaf links
     - endpoints: ["leaf1:e1-1", "spine:e1-1"]
