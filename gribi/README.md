@@ -368,4 +368,7 @@ INFO[0000] "leaf1:57401": timestamp: 1747763792059403059
 result: OK 
 ```
 
-To destroy the lab, run `sudo clab des -a`.
+To destroy the lab, run:
+```bash
+sudo clab des -a
+```
