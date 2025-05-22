@@ -158,6 +158,8 @@ Along with checking the health of the components, the RPC also generates a tech 
 gnoic -a leaf1:57401 -u admin -p admin --insecure healthz check --path /platform/fan-tray[id=1]
 ```
 
+Note - wait for a few seconds for the output as the system will be generating a Tech Support file.
+
 Expected output:
 
 ```bash
