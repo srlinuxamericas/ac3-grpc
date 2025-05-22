@@ -131,7 +131,7 @@ INFO[0000] "leaf1:57401":
 
 There are no gRIBI routes at this time.
 
-Now, let's push the gRIBI route. The route [instructions](#L436) are saved in a file [grib-input.yml](grib-input.yml)
+Now, let's push the gRIBI route. The route [instructions](#L50) are saved in a file [grib-input.yml](grib-input.yml)
 
 ```
 gribic -a leaf1:57401 -u admin -p admin --insecure modify --input-file grib-input.yml
