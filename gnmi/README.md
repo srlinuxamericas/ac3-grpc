@@ -443,6 +443,12 @@ We can see that the MTU value is now updated to 8000.
 
 When there is a commit confirm in progress, the system will not allow any new configuration changes via any management interface (CLI, Netconf, gRPC, JSON-RPC) until the active commit confirm is confirmed, cancelled or the rollback timer expires.
 
+The status bar at the bottom shows that a commit confirm is in progress and also shows the time remaining to accept or cancel the commit confirm.
+
+```bash
+[commit confirmed (rollback in a minute)] Current mode: + running
+```
+
 The following error will be displayed when trying to commit a new change while a commit confirm is ongoing.
 
 ```bash
