@@ -175,6 +175,8 @@ gribic version
 
 If for any reason, one of the above clients needs to be re-installed or updated, refer to the client pages referenced above.
 
+For gnsi build instructions, refer to the [gnsi-build.sh](gnsi-build.sh) script in this repo.
+
 All gnmic, gnoic, gnsic and gribic commands will be executed from the VM.
 
 ![image](images/lab-setup.jpg)
