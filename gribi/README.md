@@ -31,6 +31,8 @@ Lab is deployed with all required configuration.
 
 Check the path taken from `leaf1` to reach `2.2.2.2` on `leaf2`. Perform a traceroute using gNOI System RPC.
 
+**5.1.1 gNOI Traceroute**
+
 ```bash
 gnoic -a leaf1:57401 -u gnoic1 -p gnoic1 --insecure system traceroute --destination 2.2.2.2 --ns default --wait 1s
 ```
@@ -82,6 +84,8 @@ Before we push this route, let's verify the route table entries on `leaf1`.
 
 We will be using gNMI to get this state information.
 
+**5.1.2 gNMI Get**
+
 ```
 gnmic -a leaf1:57401 -u admin -p admin --insecure get --path "/network-instance[name=default]/route-table/ipv4-unicast" --encoding=JSON_IETF --depth 2 | grep -E "prefix|active|type"
 ```
@@ -117,6 +121,8 @@ If you would like to see the full output, try running the above command without 
 
 Before we push the route, let's get the current installed gRIBI routes.
 
+**5.1.3 gRIBI Get**
+
 ```
 gribic -a leaf1:57401 -u admin -p admin --insecure get --ns default --aft ipv4
 ```
@@ -132,6 +138,8 @@ INFO[0000] "leaf1:57401":
 There are no gRIBI routes at this time.
 
 Now, let's push the gRIBI route. The route [instructions](#L50) are saved in a file [grib-input.yml](grib-input.yml)
+
+**5.1.4 gRIBI Modify**
 
 ```
 gribic -a leaf1:57401 -u admin -p admin --insecure modify --input-file grib-input.yml
@@ -225,6 +233,8 @@ response: result: {
 
 The operation is successful. Let's get the gRIBI installed route.
 
+**5.1.5 gRIBI Get Destination prefix**
+
 ```
 gribic -a leaf1:57401 -u admin -p admin --insecure get --ns default --aft ipv4
 ```
@@ -251,6 +261,8 @@ entry: {
 ```
 
 Get the gRIBI installed next hop group:
+
+**5.1.6 gRIBI Get NHG**
 
 ```
 gribic -a leaf1:57401 -u admin -p admin --insecure get --ns default --aft nhg
@@ -279,6 +291,8 @@ entry: {
 
 Get the gRIBI installed next hop:
 
+**5.1.7 gRIBI Get Next Hop**
+
 ```
 gribic -a leaf1:57401 -u admin -p admin --insecure get --ns default --aft nh
 ```
@@ -305,6 +319,8 @@ entry: {
 ```
 
 Now let's verify the route table on spine and confirm that there is a route for `10.10.10.2/32` which is the loopback IP on leaf2.
+
+**5.1.8 gNMI Get**
 
 ```
 gnmic -a leaf1:57401 -u admin -p admin --insecure get --path "/network-instance[name=default]/route-table/ipv4-unicast" --encoding=JSON_IETF --depth 2 | grep -E "prefix|active|type"
@@ -341,6 +357,8 @@ We can see that the route for `2.2.2.2` is now owned by gRIBI.
 
 Now it's time to check the path taken from `leaf1` to reach `2.2.2.2`. Repeat the traceroute command performed at the beginning of this activity and compare the next hops between the 2 outputs.
 
+**5.1.9 gNOI Traceroute**
+
 ```
 gnoic -a leaf1:57401 -u gnoic1 -p gnoic1 --insecure system traceroute --destination 2.2.2.2 --ns default --wait 1s
 ```
@@ -355,6 +373,8 @@ traceroute to 2.2.2.2 (2.2.2.2), 30 max hops, 56 byte packets
 We can see that `2.2.2.2` is now reachable over the direct link to `leaf2`.
 
 Flush all gRIBI routes:
+
+**5.1.10 gRIBI Flush**
 
 ```bash
 gribic -a leaf1:57401 -u admin -p admin --insecure flush --ns default --override
