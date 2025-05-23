@@ -2,7 +2,7 @@
 
 In this section, we will explore gNOI services.
 
-## gNOI System Time
+## 3.1 gNOI System Time
 
 The System Time RPC can be used to get the current timestamp on the router.
 
@@ -22,7 +22,7 @@ Expected output:
 +-------------+-----------------------------------------+---------------------+
 ```
 
-## gNOI System Ping
+## 3.2 gNOI System Ping
 
 The System Ping RPC can be used to initiate a ping on the router from a client.
 
@@ -41,7 +41,7 @@ Expected output:
 round-trip min/avg/max/stddev = 56.421/56.421/56.421/0.000 ms
 ```
 
-## gNOI System Traceroute
+## 3.3 gNOI System Traceroute
 
 Traceroute RPC can be used to trace the path to the destination using ICMP messages similar to a standard traceroute but executed remotely from a gNOI client.
 
@@ -59,7 +59,7 @@ traceroute to 2.2.2.2 (2.2.2.2), 30 max hops, 56 byte packets
 2 2.2.2.2 (2.2.2.2) 127.56325ms
 ```
 
-## gNOI File Get
+## 3.4 gNOI File Get
 
 gNOI File service provides RPCs that are used to transfer files between the client and the router.
 
@@ -105,7 +105,7 @@ ls -lrt etc/opt/srlinux/config.json
 
 This action can be put inside a cron job and scheduled for daily backups.
 
-## gNOI File Put
+## 3.5 gNOI File Put
 
 gNOI File Put RPC can be used to transfer files to the router.
 
@@ -148,7 +148,7 @@ Expected output:
 
 Now that the config backup is transferred, regular CLI process can be followed to restore this config. This is outside the scope of this activity.
 
-## gNOI Healthz
+## 3.6 gNOI Healthz
 
 The Healthz RPC can be used to verify the health of the router components like line cards, fan tray etc.
 
@@ -172,7 +172,7 @@ Expected output:
 
 As this is a containerlab node, the health status is Unspecified.
 
-## Software Upgrade using gNOI
+## 3.7 Software Upgrade using gNOI
 
 This section is theory only as these RPCs cannot be implemented on a node in Containerlab.
 
