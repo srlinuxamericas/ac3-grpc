@@ -1,6 +1,6 @@
 # gNMI Use Cases
 
-## gNMI Capabilities
+## 1.1 gNMI Capabilities
 
 We will start by verifying gNMI capabilities on the SR Linux device using the gNMI Capabilities RPC.
 
@@ -27,7 +27,7 @@ supported models:
   <---truncated--->
 ```
 
-## gNMI Get
+## 1.2 gNMI Get
 
 gNMI Get RPC is used to retrieve the running configuration or operational state on the device.
 
@@ -107,6 +107,8 @@ Expected output:
 ]
 ```
 
+**1.2.1 gNMI Get for State**
+
 Next let's get only the operational state of the client facing interface using gNMI. This comes from the state datastore.
 
 To get the state gNMI Xpath, search for the leafs under interface context in the SR Linux yang explorer.
@@ -135,13 +137,13 @@ Expected output:
 ]
 ```
 
-## gNMI Set
+## 1.3 gNMI Set
 
 gNMI Set RPC is used to make configuration changes on the device.
 
 There are multiple ways to update the configuration and we will explore a few of them in this workshop.
 
-### Update
+### 1.3.1 Update
 
 The `Update` option is to used to configure one leaf at a time.
 
@@ -177,7 +179,7 @@ Expected output:
 
 Verify the new MTU value using the Get request used above.
 
-### Update Path
+### 1.3.2 Update Path
 
 Another way to specify a path and value is using `--update-path` and `--update-value` options.
 
@@ -189,7 +191,7 @@ gnmic -a leaf1 -u admin -p admin --skip-verify set --update-path /interface[name
 
 Verify the current MTU using the Get request shown above.
 
-### Update File
+### 1.3.3 Update File
 
 When multiple config objects are required to be updated, the configuration can be included in a file and sent to the device using the `--update-path` and `--update-file` options.
 
@@ -240,7 +242,7 @@ Verify the `system0` interface configuration using the Get RPC used earlier.
 gnmic -a leaf1:57401 -u admin -p admin --insecure --encoding json_ietf get --path /interface[name=system0] --type config
 ```
 
-### Replace File
+### 1.3.4 Replace File
 
 When replacing or overwriting an entire section of the config, the new config to be applied can be specified in a file along with the `--replace-path` and `--replace-file` options.
 
@@ -361,7 +363,7 @@ Expected output:
 ]
 ```
 
-### Update CLI File
+### 1.3.5 Update CLI File
 
 Unlike SR Linux, some systems may not have 100% yang coverage for all configuration objects.
 
@@ -397,7 +399,7 @@ Verify the updated SNMP communities using Get RPC.
 gnmic -a leaf1:57401 -u admin -p admin --insecure get --path /system/snmp --encoding json_ietf -t config
 ```
 
-### Commit confirm
+### 1.3.6 Commit confirm
 
 Commit confirm is a useful CLI feature when making critical changes. Using this feature allows the system to do an automatic rollback if the user does not accept or cancel a commit confirm before the timeout.
 
@@ -496,7 +498,7 @@ Expected output:
 
 The MTU change is now permanently applied.
 
-### Delete
+### 1.3.7 Delete
 
 Our last option with the Set method is to delete a configuration element.
 
@@ -528,13 +530,13 @@ Verify the current MTU value after the delete operation. It should now be set to
 gnmic -a leaf1:57401 -u admin -p admin --insecure get --path /interface[name=ethernet-1/10]/mtu --encoding json_ietf
 ```
 
-## gNMI Subscribe
+## 1.4 gNMI Subscribe
 
 The Subscribe RPC is the most commonly used gNMI RPC under the disguise of Streaming Telemetry.
 
 We will try 3 different telemetry options during this workshop.
 
-### Once
+### 1.4.1 Once
 
 Just like SNMP polling, it is possible to poll a specific object using gNMI with the `ONCE` option in the Subscribe RPC.
 
@@ -563,7 +565,7 @@ Expected output:
 }
 ```
 
-### Sample
+### 1.4.2 Sample
 
 If we need a continous stream of this stat, we will use the `SAMPLE` option along with a specific interval.
 
@@ -576,7 +578,7 @@ gnmic -a leaf1:57401 -u admin -p admin --insecure sub --path /interface[name=eth
 The streaming session can be stopped using `CTRL+c`.
 
 
-### On change
+### 1.4.3 On change
 
 In some cases, we only want a counter when the value has changed. For example, after a new interface is configured, the out packets will be 0 until a protocol and neighbor are established. There is benefit in streaming continous 0.
 
