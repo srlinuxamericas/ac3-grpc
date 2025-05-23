@@ -48,7 +48,7 @@ Openconfig is enabled on all 3 devices. This can be verified using:
 info flat from state system management openconfig
 ```
 
-### gNMI Get with Openconfig
+### 2.1 gNMI Get with Openconfig
 
 All interfaces were configured using SR Linux commands when the lab was deployed. With SR Linux Openconfig implementation, it is possible to see this config in Openconfig format.
 
@@ -183,7 +183,7 @@ Expected output:
 ]
 ```
 
-### gNMI Set with Openconfig
+### 2.2 gNMI Set with Openconfig
 
 All the gNMI Set methods we tried previously with SR Linux models are also valid with Openconfig models.
 
@@ -337,7 +337,7 @@ and run a ping to Client 3
 ping -c 3 172.16.10.60
 ```
 
-### gNMI Subscribe with Openconfig
+### 2.3 gNMI Subscribe with Openconfig
 
 gNMI Subscribe for Openconfig Streaming Telemetry works in the same manner as the SR Linux models.
 
