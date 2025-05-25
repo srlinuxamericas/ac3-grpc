@@ -5,7 +5,7 @@
 
 set -eu
 
-startTraffic1-2() {
+startTraffic1-3() {
     echo "starting traffic between clients 1 and 2"
     docker exec client3 bash /config/iperf.sh
 }
@@ -15,7 +15,7 @@ startAll() {
     docker exec client3 bash /config/iperf.sh
 }
 
-stopTraffic1-2() {
+stopTraffic1-3() {
     echo "stopping traffic between clients 1 and 2"
     docker exec client3 pkill iperf3
 }
@@ -27,8 +27,8 @@ stopAll() {
 
 # start traffic
 if [ $1 == "start" ]; then
-    if [ $2 == "1-2" ]; then
-        startTraffic1-2
+    if [ $2 == "1-3" ]; then
+        startTraffic1-3
     fi
     if [ $2 == "all" ]; then
         startAll
@@ -36,8 +36,8 @@ if [ $1 == "start" ]; then
 fi
 
 if [ $1 == "stop" ]; then
-    if [ $2 == "1-2" ]; then
-        stopTraffic1-2
+    if [ $2 == "1-3" ]; then
+        stopTraffic1-3
     fi
     if [ $2 == "all" ]; then
         stopAll
