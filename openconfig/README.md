@@ -260,6 +260,8 @@ Let's verify this using gNMI Get.
 
 As an example, let's verify the status of BGP neighbor `2.2.2.2` on leaf1 using SR Linux model.
 
+Note: Wait for a minute for BGP to establish the sessions.
+
 To reduce the output, we will use the `depth` option supported in gnmic.
 
 ```bash
