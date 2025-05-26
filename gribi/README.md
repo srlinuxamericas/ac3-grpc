@@ -29,6 +29,8 @@ The new lab that will be deployed is similar to the previous lab but without any
 
 Lab is deployed with all required configuration.
 
+**Wait for a few seconds for BGP sessions to come UP**
+
 Check the path taken from `leaf1` to reach `2.2.2.2` on `leaf2`. Perform a traceroute using gNOI System RPC.
 
 **5.1.1 gNOI Traceroute**
