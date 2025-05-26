@@ -168,3 +168,11 @@ Verify using gNMI Get that the default route is installed.
 ```bash
 gnmic -a leaf1:57401 -u admin -p admin --insecure get --path "/network-instance[name=default]/route-table/ipv4-unicast" --encoding=JSON_IETF --depth 2 | grep -E "prefix|active|type"
 ```
+
+Expected output:
+
+```bash
+"active": true,
+"ipv4-prefix": "0.0.0.0/0",
+"route-type": "srl_nokia-common:gribi"
+```
