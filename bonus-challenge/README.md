@@ -97,7 +97,13 @@ gnmic -a leaf1 -u admin -p admin --skip-verify get --path /system/aaa/authorizat
 
 Note - as gnsic is beta, you may have to run the policy install command multiple times until you see the policy in the verification output above.
 
-After the policy is installed, try gNMI Get and the following error should be displayed:
+After the policy is installed, try gNMI Set:
+
+```bash
+gnmic -a leaf1 -u grclient1 -p grclient1 --skip-verify set --update /interface[name=ethernet-1/10]/mtu:::json:::4000
+```
+
+and the following error should be displayed:
 
 ```bash
 target "leaf1" set request failed: target "leaf1" SetRequest failed: rpc error: code = PermissionDenied desc = User 'grclient1' is not authorized to use rpc '/gnmi.gNMI/Set'
