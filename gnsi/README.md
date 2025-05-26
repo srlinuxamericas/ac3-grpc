@@ -247,7 +247,9 @@ ERRO[0000] "leaf1:57400" File Put failed: rpc error: code = PermissionDenied des
 Error: there was 1 error(s)
 ```
 
-Clear the Authz policy by logging into `leaf1` CLI and executing the following command:
+Clear the Authz policy:
+
+**Login into `leaf1` CLI and executing the following command:**
 
 ```bash
 tools system aaa authorization authz-policy remove
