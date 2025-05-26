@@ -320,7 +320,7 @@ entry: {
 } 
 ```
 
-Now let's verify the route table on spine and confirm that there is a route for `10.10.10.2/32` which is the loopback IP on leaf2.
+Now let's verify the route table on leaf1 and confirm that there is a route for `10.10.10.2/32` which is the loopback IP on leaf2.
 
 **5.1.8 gNMI Get**
 
