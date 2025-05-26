@@ -168,3 +168,7 @@ gribic -a leaf1:57401 -u admin -p admin --insecure modify --input-file file-name
 ```
 
 Verify using gNMI Get that the default route is installed.
+
+```bash
+gnmic -a leaf1:57401 -u admin -p admin --insecure get --path "/network-instance[name=default]/route-table/ipv4-unicast" --encoding=JSON_IETF --depth 2 | grep -E "prefix|active|type"
+```
