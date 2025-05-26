@@ -43,9 +43,7 @@ See the [topology](ac3-grpc.clab.yml) file for more details.
 
 Login to the VM using the credentials on your sheet.
 
-This Git repo is already cloned to your VM.
-
-But in case you need it, use the below command to clone this repo to your VM.
+Clone the Git repo to your VM:
 
 ```
 git clone https://github.com/srlinuxamericas/ac3-grpc.git
