@@ -6,7 +6,7 @@ When setting up streaming telemetry to an external system, by default the system
 
 Configure a new user `grclient1` on `leaf1` that will be used for streaming telemetry.
 
-Login to `leaf1` and run the following commands:
+**Login to `leaf1` and run the following commands:**
 
 ```bash
 enter candidate private
