@@ -128,10 +128,7 @@ Install the default route using gRIBI.
 
 Here's the gRIBI payload for the default route.
 
-<details>
-<summary>Authz Solution</summary>
-<br>
-<pre>
+```yaml
 default-network-instance: default
 
 params:
@@ -158,8 +155,7 @@ operations:
     ipv4:
       prefix: 0.0.0.0/0
       nhg: 1
-</pre>
-</details>
+```
 
 Copy the payload to a file and use gribic to inject this route.
 
